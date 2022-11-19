@@ -37,15 +37,36 @@ class User:
             the new value for the key website in the dictionary
         """     
 #   > check_age(account)
-#   > check_security(account) - Adam
-#       > regular expressions
+    def check_security(account) #- Adam
+       > """
+#           Checks the secutrity of the password by measuring for lowercase, uppercase
+            special characters, and numbers. Assigns this to a value
+            
+        Args: 
+            account (str): the users password that's having its strength evaluated using regular expressions. 
+            
+        Returns:
+            A value marking the strength of the given password
+            
+       """
 #   > generate_pass(account)
 #   > display() - Wasif
 #       > ask user if they want to sort alphabetically by account/website name
 #           or if they want to sort by oldest to youngest password age   
 #           > sort with lambda
-#   > import_passwords(filepath) - Adam
-#       > with statement / reading from file inputted by the user  
+    def import_passwords(filepath) #- Adam
+#       > with statement / reading from file inputted by the user 
+       """
+            importing the list of passwords
+       
+       Args: 
+            filepath (txt): the file containing the users passwords
+            
+        Returns:
+            the opened file
+            
+
+       """
 #
 class Password:
     """ Abstraction of an password
