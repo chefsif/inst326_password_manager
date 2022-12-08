@@ -24,7 +24,7 @@ class User:
     """
     
     def __init__(self, name):
-        """ Initializes a User object.
+        """ Initializes a User object. yeee
         
         Args: 
             name (string): the user's name.
