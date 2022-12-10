@@ -2,7 +2,7 @@ import random
 import string
 import sys
 
-def main():        
+def main():       
     """ Runs the main execution loop for the password manager program. Performs
         different operations and functions of the User and Password classes
         based on user-inputted commands, which are recognized via a 
@@ -34,7 +34,7 @@ def main():
     input = input()
     list_p = User(input)
     print(f"What would you like to do, {input}?")
-    while exit_check = 0:
+    while exit_check == 0:
         print("1: Check password    2: Update password    3: Create password \
               4: Import password    5: Export password    6: Quit")
         input1 = int(input())
@@ -94,6 +94,7 @@ def main():
                 data.write(str(list_p))
         if input1 == 6:
             sys.exit("Have a nice day!")
+
 class User:
     """ Represents a user with several stored passwords.
     
@@ -103,7 +104,7 @@ class User:
             storing key/value pairs of accounts and passwords, respectively.
     """
     
-    def __init__(self, name):
+    def __init__(self, name): # Wasif
         """ Initializes a User object. 
         
         Args: 
@@ -115,7 +116,7 @@ class User:
         self.name = name
         self.password_list = {}
     
-    def update_password(self, website, new_pass): #Kevin
+    def update_password(self, website, new_pass): # Kevin
         """ Updates the password for a certain website the user has a password 
             in. Basically updates the existing K/V pair. If the password and 
             account do not exist, it will make a new K/V pair.
@@ -131,11 +132,9 @@ class User:
         Returns:
             the new value for the key website in the dictionary
         """
-        pass    
-
-    def check_security(account):  #Adam
         self.password_list[website] = new_pass
-        return new_pass
+        return new_pass    
+
     def check_security(account):
         """ Calculates a security score for a password.
         
@@ -167,7 +166,7 @@ class User:
             
         pass
 
-    def generate_pass(account):
+    def generate_pass(account): # Wasif
         """ Generates a random password for a given account.
         
         Args: 
@@ -186,7 +185,7 @@ class User:
             new_password += random.choice(all_chars[random.randint(0,3)])
         return new_password
     
-    def __str__(self):
+    def __str__(self): # Wasif
         """ Returns an informal string representation of a User object.
             Prompts user whether to display accounts sorted by password age or
             alphabetically.
@@ -244,9 +243,9 @@ class User:
         
         with open("filepath") as f:
             for line in f:
-                
+                pass
+            pass
         # Techniques Demonstrated: with statement / reading from file  
-        pass
 
 
 class Password:
@@ -256,7 +255,7 @@ class Password:
         passcode (string): actual password
         age (int): how long the account has had the password in days
     """  
-    def __init__(self, passcode, age=1):
+    def __init__(self, passcode, age=1): # Wasif
         """ Initializes a Password object.
         
         Args:
@@ -269,7 +268,7 @@ class Password:
         self.passcode = passcode
         self.age = age
     
-    def edit_password(self, new_password, age=1):
+    def edit_password(self, new_password, age=1): # Wasif
         """ Changes the value and age of a password.
         
         Args:
