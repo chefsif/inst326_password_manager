@@ -34,7 +34,7 @@ class User:
         """
         pass
     
-    def update_password(self, website, new_pass):
+    def update_password(self, website, new_pass): #Kevin
         """ Updates the password for a certain website the user has a password 
             in. Basically updates the existing K/V pair. If the password and 
             account do not exist, it will make a new K/V pair.
@@ -51,7 +51,7 @@ class User:
             the new value for the key website in the dictionary
         """     
 
-    def check_security(account):
+    def check_security(account):  #Adam
         """ Calculates a security score for a password.
         
         Args: 
@@ -63,6 +63,23 @@ class User:
             password is (ex: weak, very weak, secure, very secure, etc.)
         """
         # Technique Demonstrated: regular expressions
+        num = 0
+        strengthEval = 0
+        spChar = ""
+        pwLength = 0
+        
+        if num in account:
+            strengthEval + 1
+        elif spChar in account:
+            strengthEval + 1
+        elif pwLength > 6:
+            strengthEval + 1
+        else:
+            strengthEval + 0
+            
+        return strengthEval
+            
+            
         pass
 
     def generate_pass(account):
@@ -89,7 +106,7 @@ class User:
         # Techniques Demonstrated: magic methods / sorting with lambda function
         pass
     
-    def import_passwords(filepath):
+    def import_passwords(filepath): #Adam
         """ Populates the user's password list by reading accounts and 
             passwords from a given file.
             
@@ -100,6 +117,10 @@ class User:
         Side effects:
             Modidies values in the attribute password_list.        
         """
+        
+        with open("filepath") as f:
+            for line in f:
+                
         # Techniques Demonstrated: with statement / reading from file  
         pass
 
