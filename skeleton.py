@@ -1,3 +1,4 @@
+import sys
 def main():        
     """ Runs the main execution loop for the password manager program. Performs
         different operations and functions of the User and Password classes
@@ -12,10 +13,86 @@ def main():
     
     # some example commands: new_account, update_password, check_age, 
     #   check_security, etc.
-    pass
-
+    input = ""
+    input1 = 0
+    input2 = ""
+    input3 = 0
+    input4 = ""
+    input5 = ""
+    input6 = ""
+    exit_check = 0
+    check1 = 0
+    check2 = 0
+    check3 = 0
+    check4 = 0
+    check5 = 0
+    
+    print("Welcome to the password manager, what is your name?")
+    input = input()
+    list_p = User(input)
+    print(f"What would you like to do, {input}?")
+    while exit_check = 0:
+        print("1: Check password    2: Update password    3: Create password \
+              4: Import password    5: Export password    6: Quit")
+        input1 = int(input())
+        if input1 == 1:
+            while check1 == 0:
+                print("Which website's password would you like to check?")
+                input2 = input()
+                if input2 not in list_p.password_list.keys():
+                    print("Website is not valid, please try again.")
+                else:
+                    check1 = 1
+            print(f"The password for {input2} is \
+                  {list_p.password_list[input2]}")
+            print(f"The strength of the password is {list_p.check_security}")
+            
+        if input1 == 2:
+            while check2 == 0:
+                print("Which website's password would you like to update?")
+                input2 = input()
+                if input2 not in list_p.password_list.keys():
+                    print("Website is not valid, please try again.")
+                else:
+                    check2 = 1
+            print(f"What would you like the new password to be for {input2}?")
+            input3 = input()
+            print(f"The password for {input2} has been updated to {input3}")
+            list_p.update_password(input2, input3)
+            
+        if input1 == 3:
+            
+            print("Which website's password would you like to create?")
+            input2 = input()
+            while check3 == 0:
+                print("Would you like to randomly generate the password? Y/N?")
+                input4 = input()
+                if input4 == "Y":
+                    list_p.generate_password(input2)
+                    check3 = 1
+                elif input4 == "N":
+                    print(f"What would you like the password to be \
+                          for {input2}?")
+                    input3 = input()
+                    print(f"The password for {input2} has been created to \
+                          be {input3}")
+                    list_p.update_password(input2, input3)
+                    check3 = 1
+                else:
+                    print("Website is not valid, please try again")
+        if input1 == 4:
+            print("Please input the name of the import file")
+            input5 = input()
+            list_p.import_passwords(input5)
+        if input1 == 5:
+            print("Please name the export file, including .txt at the end")
+            input6 = input()
+            with open(input6, 'w') as data:
+                data.write(str(list_p))
+        if input1 == 6:
+            sys.exit("Have a nice day!")
 class User:
-    """ Represents a user with several stored paasswords.
+    """ Represents a user with several stored passwords.
     
     Attributes:
         name (string): the user's name
@@ -50,7 +127,8 @@ class User:
         Returns:
             the new value for the key website in the dictionary
         """     
-
+        self.password_list[website] = new_pass
+        return new_pass
     def check_security(account):
         """ Calculates a security score for a password.
         
