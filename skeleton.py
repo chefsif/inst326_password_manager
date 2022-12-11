@@ -2,7 +2,7 @@ import random
 import string
 import sys
 
-def main():       
+def main(): # Kevin 
     """ Runs the main execution loop for the password manager program. Performs
         different operations and functions of the User and Password classes
         based on user-inputted commands, which are recognized via a 
@@ -16,7 +16,7 @@ def main():
     
     # some example commands: new_account, update_password, check_age, 
     #   check_security, etc.
-    input = ""
+    user_input = ""
     input1 = 0
     input2 = ""
     input3 = 0
@@ -24,21 +24,20 @@ def main():
     input5 = ""
     input6 = ""
     exit_check = 0
-    check1 = 0
-    check2 = 0
-    check3 = 0
     check4 = 0
     check5 = 0
     
-    print("Welcome to the password manager, what is your name?")
-    input = input()
-    list_p = User(input)
-    print(f"What would you like to do, {input}?")
+    print("Welcome to the Password Manager! What is your name?")
+    user_input = input()
+    list_p = User(user_input)
+    print(f"What would you like to do, {user_input}?")
     while exit_check == 0:
-        print("1: Check password    2: Update password    3: Create password \
-              4: Import password    5: Export password    6: Quit")
+        print("1: Check password\t2: Update password\t3: Create password"
+              + "\t4: Import password\t5: Export password\t6: Quit")
+        
         input1 = int(input())
         if input1 == 1:
+            check1 = 0
             while check1 == 0:
                 print("Which website's password would you like to check?")
                 input2 = input()
@@ -46,11 +45,13 @@ def main():
                     print("Website is not valid, please try again.")
                 else:
                     check1 = 1
-            print(f"The password for {input2} is \
-                  {list_p.password_list[input2]}")
-            print(f"The strength of the password is {list_p.check_security}")
+            print(f"The password for {input2} is: " + 
+                  f"{list_p.password_list[input2]}")
+            # print(f"The strength of the password is" +
+            #     f"{list_p.check_security(input2)}")
             
         if input1 == 2:
+            check2 = 0
             while check2 == 0:
                 print("Which website's password would you like to update?")
                 input2 = input()
@@ -64,9 +65,10 @@ def main():
             list_p.update_password(input2, input3)
             
         if input1 == 3:
-            
+            check2 = 0
             print("Which website's password would you like to create?")
             input2 = input()
+            check3 = 0
             while check3 == 0:
                 print("Would you like to randomly generate the password? Y/N?")
                 input4 = input()
@@ -82,16 +84,19 @@ def main():
                     list_p.update_password(input2, input3)
                     check3 = 1
                 else:
-                    print("Website is not valid, please try again")
+                    print("Please enter Y or N.")
+        
         if input1 == 4:
-            print("Please input the name of the import file")
+            print("Please input the name of the import file: ")
             input5 = input()
             list_p.import_passwords(input5)
+        
         if input1 == 5:
-            print("Please name the export file, including .txt at the end")
+            print("Please name the export file, including .txt at the end: ")
             input6 = input()
             with open(input6, 'w') as data:
                 data.write(str(list_p))
+        
         if input1 == 6:
             sys.exit("Have a nice day!")
 
@@ -133,9 +138,9 @@ class User:
             the new value for the key website in the dictionary
         """
         self.password_list[website] = new_pass
-        return new_pass    
+        return new_pass   
 
-    def check_security(account):
+    def check_security(self, account): # Adam
         """ Calculates a security score for a password.
         
         Args: 
@@ -166,7 +171,7 @@ class User:
             
         pass
 
-    def generate_pass(account): # Wasif
+    def generate_password(self, account): # Wasif
         """ Generates a random password for a given account.
         
         Args: 
@@ -183,7 +188,7 @@ class User:
             # randomly decide what type of character to choose, then choose
             # which random character of that type to insert in the password
             new_password += random.choice(all_chars[random.randint(0,3)])
-        return new_password
+        self.password_list[account] = new_password
     
     def __str__(self): # Wasif
         """ Returns an informal string representation of a User object.
@@ -205,7 +210,7 @@ class User:
             criteria = input("Please enter the word 'age' if you would like " 
                 + "to sort by age or the word 'alpha' if you would like to "
                 + "sort alphabetically by account/website name."
-            )
+            ).split()
 
             if criteria != "age" and criteria != "alpha":
                 print("Please try again.")
@@ -213,14 +218,12 @@ class User:
                 option_chosen = True
         
         # sorts password_list based on user input
-        if(criteria == "alpha"):
-            sorted_passwords = sorted(self.password_list, 
-                key = lambda account: account
-            )
-        if(criteria == "age"):
-            sorted_passwords = sorted(self.password_list, 
-                key = lambda account: self.password_list[account].age
-            )
+        sorted_passwords = (
+            sorted(self.password_list, 
+                key = lambda account: self.password_list[account].age)
+            if criteria == "age" 
+            else sorted(self.password_list, key = lambda account: account)
+        )
         
         # assembles informal string representation based on sorted list
         for password in sorted_passwords:
@@ -229,7 +232,7 @@ class User:
             
         return user_string.strip()
     
-    def import_passwords(filepath): #Adam
+    def import_passwords(self, filepath): #Adam
         """ Populates the user's password list by reading accounts and 
             passwords from a given file.
             
@@ -245,7 +248,8 @@ class User:
             for line in f:
                 pass
             pass
-        # Techniques Demonstrated: with statement / reading from file  
+        # Techniques Demonstrated: with statement / reading from file and 
+        #   sequence unpacking
 
 
 class Password:
