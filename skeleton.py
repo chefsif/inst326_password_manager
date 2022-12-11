@@ -1,8 +1,5 @@
-import random
-import string
 import sys
-
-def main(): # Kevin 
+def main():        
     """ Runs the main execution loop for the password manager program. Performs
         different operations and functions of the User and Password classes
         based on user-inputted commands, which are recognized via a 
@@ -16,7 +13,7 @@ def main(): # Kevin
     
     # some example commands: new_account, update_password, check_age, 
     #   check_security, etc.
-    user_input = ""
+    input = ""
     input1 = 0
     input2 = ""
     input3 = 0
@@ -24,20 +21,21 @@ def main(): # Kevin
     input5 = ""
     input6 = ""
     exit_check = 0
+    check1 = 0
+    check2 = 0
+    check3 = 0
     check4 = 0
     check5 = 0
     
-    print("Welcome to the Password Manager! What is your name?")
-    user_input = input()
-    list_p = User(user_input)
-    print(f"What would you like to do, {user_input}?")
-    while exit_check == 0:
-        print("1: Check password\t2: Update password\t3: Create password"
-              + "\t4: Import password\t5: Export password\t6: Quit")
-        
+    print("Welcome to the password manager, what is your name?")
+    input = input()
+    list_p = User(input)
+    print(f"What would you like to do, {input}?")
+    while exit_check = 0:
+        print("1: Check password    2: Update password    3: Create password \
+              4: Import password    5: Export password    6: Quit")
         input1 = int(input())
         if input1 == 1:
-            check1 = 0
             while check1 == 0:
                 print("Which website's password would you like to check?")
                 input2 = input()
@@ -45,13 +43,11 @@ def main(): # Kevin
                     print("Website is not valid, please try again.")
                 else:
                     check1 = 1
-            print(f"The password for {input2} is: " + 
-                  f"{list_p.password_list[input2]}")
-            # print(f"The strength of the password is" +
-            #     f"{list_p.check_security(input2)}")
+            print(f"The password for {input2} is \
+                  {list_p.password_list[input2]}")
+            print(f"The strength of the password is {list_p.check_security}")
             
         if input1 == 2:
-            check2 = 0
             while check2 == 0:
                 print("Which website's password would you like to update?")
                 input2 = input()
@@ -65,10 +61,9 @@ def main(): # Kevin
             list_p.update_password(input2, input3)
             
         if input1 == 3:
-            check2 = 0
+            
             print("Which website's password would you like to create?")
             input2 = input()
-            check3 = 0
             while check3 == 0:
                 print("Would you like to randomly generate the password? Y/N?")
                 input4 = input()
@@ -84,32 +79,28 @@ def main(): # Kevin
                     list_p.update_password(input2, input3)
                     check3 = 1
                 else:
-                    print("Please enter Y or N.")
-        
+                    print("Website is not valid, please try again")
         if input1 == 4:
-            print("Please input the name of the import file: ")
+            print("Please input the name of the import file")
             input5 = input()
             list_p.import_passwords(input5)
-        
         if input1 == 5:
-            print("Please name the export file, including .txt at the end: ")
+            print("Please name the export file, including .txt at the end")
             input6 = input()
             with open(input6, 'w') as data:
                 data.write(str(list_p))
-        
         if input1 == 6:
             sys.exit("Have a nice day!")
-
 class User:
     """ Represents a user with several stored passwords.
     
     Attributes:
         name (string): the user's name
-        password_list {account (string) : password (Password)}: a dictionary 
+        password_list {account (string) : password (password) }: a dictionary 
             storing key/value pairs of accounts and passwords, respectively.
     """
     
-    def __init__(self, name): # Wasif
+    def __init__(self, name):
         """ Initializes a User object. 
         
         Args: 
@@ -118,10 +109,9 @@ class User:
         Side effects:
             Initializes the value of password_list to an empty dictionary.
         """
-        self.name = name
-        self.password_list = {}
+        pass
     
-    def update_password(self, website, new_pass): # Kevin
+    def update_password(self, website, new_pass): #Kevin
         """ Updates the password for a certain website the user has a password 
             in. Basically updates the existing K/V pair. If the password and 
             account do not exist, it will make a new K/V pair.
@@ -136,11 +126,12 @@ class User:
     
         Returns:
             the new value for the key website in the dictionary
-        """
+        """     
         self.password_list[website] = new_pass
-        return new_pass   
-
-    def check_security(self, account): # Adam
+        return new_pass
+    
+    
+    def check_security(account): #Adam 
         """ Calculates a security score for a password.
         
         Args: 
@@ -152,26 +143,25 @@ class User:
             password is (ex: weak, very weak, secure, very secure, etc.)
         """
         # Technique Demonstrated: regular expressions
-        num = 0
         strengthEval = 0
+        num = 0
         spChar = ""
+        letter = ""
         pwLength = 0
         
         if num in account:
             strengthEval + 1
-        elif spChar in account:
+        if spChar in account:
             strengthEval + 1
-        elif pwLength > 6:
+        if letter in account:
             strengthEval + 1
-        else:
-            strengthEval + 0
+        if pwLength > 6:
+            strengthEval + 2
             
-        return strengthEval
+        return strengthEval 
             
-            
-        pass
 
-    def generate_password(self, account): # Wasif
+    def generate_pass(account):
         """ Generates a random password for a given account.
         
         Args: 
@@ -181,16 +171,9 @@ class User:
         Side effects:
             Modidies values in the attribute password_list.
         """
-        new_password = ""
-        all_chars = [string.ascii_lowercase, string.ascii_uppercase,
-                string.digits, string.punctuation]
-        for character in range(30):
-            # randomly decide what type of character to choose, then choose
-            # which random character of that type to insert in the password
-            new_password += random.choice(all_chars[random.randint(0,3)])
-        self.password_list[account] = new_password
+        pass
     
-    def __str__(self): # Wasif
+    def __str__():
         """ Returns an informal string representation of a User object.
             Prompts user whether to display accounts sorted by password age or
             alphabetically.
@@ -200,37 +183,7 @@ class User:
                 accounts and corresponding passwords. 
         """
         # Techniques Demonstrated: magic methods / sorting with lambda function
-        user_string = ""
-        user_string += self.name + "\n"
-
-        # asking user whether to sort by password age or alphabetically by 
-        #   account
-        option_chosen = False
-        while (not option_chosen):
-            criteria = input("Please enter the word 'age' if you would like " 
-                + "to sort by age or the word 'alpha' if you would like to "
-                + "sort alphabetically by account/website name."
-            ).split()
-
-            if criteria != "age" and criteria != "alpha":
-                print("Please try again.")
-            else:
-                option_chosen = True
-        
-        # sorts password_list based on user input
-        sorted_passwords = (
-            sorted(self.password_list, 
-                key = lambda account: self.password_list[account].age)
-            if criteria == "age" 
-            else sorted(self.password_list, key = lambda account: account)
-        )
-        
-        # assembles informal string representation based on sorted list
-        for password in sorted_passwords:
-            user_string += (f"Account: {password} -" + 
-                f"Password: {self.password_list[password]}\n")
-            
-        return user_string.strip()
+        pass
     
     def import_passwords(self, filepath): #Adam
         """ Populates the user's password list by reading accounts and 
@@ -244,12 +197,12 @@ class User:
             Modidies values in the attribute password_list.        
         """
         
-        with open("filepath") as f:
+        with open(filepath, "r") as f:
             for line in f:
-                pass
-            pass
-        # Techniques Demonstrated: with statement / reading from file and 
-        #   sequence unpacking
+                account, password = line.split("\t")
+                self.password_list[account] = password
+                
+        # Techniques Demonstrated: with statement / reading from file  
 
 
 class Password:
@@ -257,31 +210,29 @@ class Password:
     
     Attributes:
         passcode (string): actual password
-        age (int): how long the account has had the password in days
+        age (int): how long the account has had the password in hours
     """  
-    def __init__(self, passcode, age=1): # Wasif
+    def __init__(self, passcode, age=0):
         """ Initializes a Password object.
         
         Args:
             passcode (string): the actual text of the password.
-            age (int): how long the password has been in use.
-                Defaults to 1 day.
+            age (int): how long the password has been in use. 
+                Defaults to 0 hours.
             
         """
         # Technique Demonstrated: optional parameter
-        self.passcode = passcode
-        self.age = age
+        pass
     
-    def edit_password(self, new_password, age=1): # Wasif
+    def edit_password(self, new_password, age=0):
         """ Changes the value and age of a password.
         
         Args:
             new_password (string): the new text of the password.
             age (int): how long the new password has been in use. 
-                Defaults to 1 day.
+                Defaults to 0 hours.
         """
-        self.passcode = new_password
-        self.age = age
+        pass
 
 if __name__ == "__main__":
     main()
