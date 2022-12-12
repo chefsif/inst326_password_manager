@@ -1,5 +1,6 @@
 import random
 import string
+import re
 
 def display_password(user, account_name):
     """ Displays account name, password, and password age for a single 
