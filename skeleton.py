@@ -242,9 +242,10 @@ class User:
         try:
             random.seed(int(seed))
         except:
-            print("The seed you entered was not valid. " + 
-                "The application will choose one for you.")
-        
+            if(seed != None):
+                print("The seed you entered was not valid. " + 
+                    "The application will choose one for you.")
+            
         all_chars = [string.ascii_lowercase, string.ascii_uppercase,
                 string.digits, string.punctuation]
         for character in range(30):
