@@ -9,7 +9,7 @@ def display_password(user, account_name):
     return (f"The password for {account_name} is: "
                 + f"{user.password_list[account_name].passcode}"
                 + f" (in use for {user.password_list[account_name].age_str()})"
-        #       + f" - strength: {user.check_security(account_name)}"
+                + f" - {user.check_security(account_name)}"
             )
 
 def main(): # Kevin
@@ -175,23 +175,38 @@ class User:
             password is (ex: weak, very weak, secure, very secure, etc.)
         """
         # Technique Demonstrated: regular expressions
-        strengthEval = 0
-        num = re.search("[0-9]+")  # or "\d"
-        spChar = r""
+        strength_rating = 0
+        strength_eval = ""
+        has_num = re.search(r"[0-9]", self.password_list[account])
         
-        letter = r"[a-zA-Z]+"
-        pwLength = len(account)
+        has_special = re.search(r"\W", self.password_list[account])
+        has_underscore = re.search(r"_", self.password_list[account])
+
+        has_letter = re.search(r"[a-zA-Z]", self.password_list[account])
+                
+        if has_num != None:
+            strength_rating += 1
+        if has_special != None or has_underscore != None:
+            strength_rating += 1
+        if has_letter != None:
+            strength_rating += 1
+        if len(self.password_list[account]) > 6:
+            strength_rating += 2
         
-        if num in account:
-            strengthEval + 1
-        if spChar in account:
-            strengthEval + 1
-        if letter in account:
-            strengthEval + 1
-        if pwLength > 6:
-            strengthEval + 2
             
-        return strengthEval 
+        if strength_rating == 1:
+            strength_eval = "Very Weak"
+        elif strength_rating == 2:
+            strength_eval = "Weak"
+        elif strength_rating == 3:
+            strength_eval = "Average"
+        elif strength_rating == 4:
+            strength_eval = "Good"
+        elif strength_rating == 5:
+            strength_eval = "Strong"   
+
+        return f"strength rating: {strength_rating} ({strength_eval})"
+
             
     def generate_password(self, account, seed=None): # Wasif
         """ Generates a random password for a given account.
