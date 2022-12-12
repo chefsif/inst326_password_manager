@@ -1,4 +1,5 @@
 import sys
+import re
 def main():        
     """ Runs the main execution loop for the password manager program. Performs
         different operations and functions of the User and Password classes
@@ -144,10 +145,11 @@ class User:
         """
         # Technique Demonstrated: regular expressions
         strengthEval = 0
-        num = 0
-        spChar = ""
-        letter = ""
-        pwLength = 0
+        num = re.search("[0-9]+")  # or "\d"
+        spChar = r""
+        
+        letter = r"[a-zA-Z]+"
+        pwLength = len(account)
         
         if num in account:
             strengthEval + 1
