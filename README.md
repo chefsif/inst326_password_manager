@@ -44,10 +44,14 @@ Command 7 is used to quit the program in the terminal.
 > Attribution: in order to evaluate whether each member has made a substantial, original contribution to the project, please clearly and unambiguously indicate who is the primary author of each major function/method. You do not need to attribute minor program components, such as an if __name__ == "__main__": statement. Along with each function, please indicate which elements from guideline 6.D. each group member is claiming credit for.
 
 # Authors
-Kevin authored the main and update_password function.
+Kevin authored the main which demonstrated f strings and with statements. 
+Kevin's update_password function demonstrated keyword arguments
 
-Adam authored the check_security and import_passwords function.
+Adam authored the check_security which demonstrated regular expressions and conditional expressions. 
+Adam's import_passwords function demonstrates sequence unpacking.
 
-Wasif authored the generate_password, both __init__ , __str__, edit_password, and age_str functions. 
+Wasif authored the generate_password which demonstrates optional parameters, __init__ , 
+__str__ demonstrates magic methods and sorting with lambda function
+edit_password, and age_str functions. 
 
 > An annotated bibliography of all sources you used to develop your project. For each source, explain how you used the source.
