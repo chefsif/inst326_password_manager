@@ -2,7 +2,7 @@ import random
 import string
 import re
 
-def display_password(user, account_name):
+def display_password(user, account_name): # Wasif
     """ Displays account name, password, and password age for a single 
             password.
     """
@@ -205,7 +205,6 @@ class User:
 
         return f"strength rating: {strength_rating} ({strength_eval})"
 
-            
     def generate_password(self, account, seed=None): # Wasif
         """ Generates a random password for a given account.
         
@@ -243,7 +242,7 @@ class User:
             string: informal string representation of a User object displaying
                 accounts and corresponding passwords. 
         """
-        # Techniques Demonstrated: magic methods, sorting with lambda function
+        # Techniques Demonstrated: magic methods, sorting with lambda function,
         #   conditional expression
         user_string = "Here is all of your information:\n\n"
         user_string += f"\nUSER NAME: {self.name}\n"
@@ -271,10 +270,11 @@ class User:
         )
 
         # assembles informal string representation based on sorted list
-        for password in sorted_passwords:
-            user_string += (f"> Account: {password} || " + 
-                f"Password: {self.password_list[password].passcode} " + 
-                f"(in use for {self.password_list[password].age_str()})\n"
+        for account in sorted_passwords:
+            user_string += (f"> Account: {account} || " + 
+                f"Password: {self.password_list[account].passcode} " + 
+                f"(in use for {self.password_list[account].age_str()})" + 
+                f" - {self.check_security(account)}"
                 )
 
         return user_string
