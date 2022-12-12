@@ -12,7 +12,7 @@ This file contains the main body of our program. It includes the User class, Pas
 
 ## How to Run the Program
 The program can be run from the command line like any other Python program and does not require any command line arguments.
-Windows: `python skeleton.py`
+Windows: `python skeleton.py`<br>
 Mac: `python3 skeleton.py`
 
 > Clear instructions on how to run your program from the command line
