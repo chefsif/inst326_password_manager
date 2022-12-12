@@ -164,15 +164,18 @@ class User:
                     
                     else:
                         print("Please choose Y or N.")
+                option_chosen = True
                         
             elif y_or_n == "N" or y_or_n == "n":
                 user_pass = input(f"What would you like the new password to be"
                         + f" for {account}?\n")
                 self.password_list[account] = Password(user_pass)
+                option_chosen = True
 
             else:
                 print("Please choose Y or N.")
-            return user_pass
+                
+        return user_pass
                 
     def check_security(self, account): # Adam 
         """ Calculates a security score for a password.
@@ -285,7 +288,7 @@ class User:
             user_string += (f"> Account: {account} || " + 
                 f"Password: {self.password_list[account].passcode} " + 
                 f"(in use for {self.password_list[account].age_str()})" + 
-                f" - {self.check_security(account)}"
+                f" - {self.check_security(account)}\n"
                 )
 
         return user_string
