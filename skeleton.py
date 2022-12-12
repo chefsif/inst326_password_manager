@@ -66,9 +66,14 @@ def main(): # Kevin
             print(display_password(user, account_name))
         # ---------------------------------------------------------------------
         elif user_choice == 4:
-            import_file = input("Please input the name of the import file "
-                                + "including .txt at the end: ")
-            user.import_passwords(import_file)
+            while check == 0:
+                try:
+                    import_file = input("Please input the name of the import "
+                                + "file including .txt at the end: ")
+                    user.import_passwords(import_file)
+                    check = 1
+                except FileNotFoundError:
+                    print("File not found")
             print("Your new passwords have been imported successfully!"
                 + "\nHere is an updated display of all your accounts and"
                 + " passwords:"            
@@ -76,10 +81,16 @@ def main(): # Kevin
             print(user)
         # ---------------------------------------------------------------------
         elif user_choice == 5:
-            export_file = input("Please name the export file,"
+            
+            while check == 0:
+                export_file = input("Please name the export file,"
                                 + "including .txt at the end: ")
-            with open(export_file, 'w') as data:
-                data.write(str(user))
+                if ".txt" in export_file:
+                    with open(export_file, 'w') as data:
+                        data.write(str(user))
+                    check = 1
+                else:
+                    print("Invalid name, remember to include .txt")
             print(
                 "Your new passwords have been exported successfully!" + 
                 f" Check them out in {export_file}."
