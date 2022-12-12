@@ -66,7 +66,7 @@ def main(): # Kevin
             print(display_password(user, account_name))
         # ---------------------------------------------------------------------
         elif user_choice == 4:
-            import_file = input("Please input the name of the import file: "
+            import_file = input("Please input the name of the import file "
                                 + "including .txt at the end: ")
             user.import_passwords(import_file)
             print("Your new passwords have been imported successfully!"
@@ -177,12 +177,11 @@ class User:
         # Technique Demonstrated: regular expressions
         strength_rating = 0
         strength_eval = ""
-        has_num = re.search(r"[0-9]", self.password_list[account])
-        
-        has_special = re.search(r"\W", self.password_list[account])
-        has_underscore = re.search(r"_", self.password_list[account])
-
-        has_letter = re.search(r"[a-zA-Z]", self.password_list[account])
+        has_num = re.search(r"[0-9]", self.password_list[account].passcode)
+        has_special = re.search(r"\W", self.password_list[account].passcode)
+        has_underscore = re.search(r"_", self.password_list[account].passcode)
+        has_letter = re.search(r"[a-zA-Z]", 
+                                self.password_list[account].passcode)
                 
         if has_num != None:
             strength_rating += 1
@@ -190,10 +189,9 @@ class User:
             strength_rating += 1
         if has_letter != None:
             strength_rating += 1
-        if len(self.password_list[account]) > 6:
+        if len(self.password_list[account].passcode) > 6:
             strength_rating += 2
         
-            
         if strength_rating == 1:
             strength_eval = "Very Weak"
         elif strength_rating == 2:
