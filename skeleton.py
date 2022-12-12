@@ -196,7 +196,9 @@ class User:
         has_underscore = re.search(r"_", self.password_list[account].passcode)
         has_letter = re.search(r"[a-zA-Z]", 
                                 self.password_list[account].passcode)
-                
+        has_password = re.search(r"password", 
+                                 self.password_list[account].passcode)
+        
         if has_num != None:
             strength_rating += 1
         if has_special != None or has_underscore != None:
@@ -205,6 +207,8 @@ class User:
             strength_rating += 1
         if len(self.password_list[account].passcode) > 6:
             strength_rating += 2
+        if has_password != None:
+            strength_rating = 2
         
         if strength_rating == 1:
             strength_eval = "Very Weak"
@@ -235,8 +239,11 @@ class User:
         new_password = ""
         
         # sets random number generator's seed to user input, if given
-        if seed != None and isinstance(seed, int):
-            random.seed(seed)
+        try:
+            random.seed(int(seed))
+        except:
+            print("The seed you entered was not valid. " + 
+                "The application will choose one for you.")
         
         all_chars = [string.ascii_lowercase, string.ascii_uppercase,
                 string.digits, string.punctuation]
