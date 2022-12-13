@@ -59,9 +59,19 @@ def main(): # Kevin
             print(display_password(user, account_name))
         # ---------------------------------------------------------------------    
         elif user_choice == 3:
-            account_name = input(
-                "Which account's password would you like to create?\n"
-            )
+            while check == 0:
+                account_name = input(
+                    "Which account's password would you like to create?\n"
+                )
+                if account_name.endswith(".com") \
+                or account_name.endswith(".org") \
+                or account_name.endswith(".edu") \
+                or account_name.endswith(".gov"):
+                    check = 1
+                else:
+                    print("Website name did not include top level domain."
+                        + " Domains currently supported are .com, .org, .edu, "
+                        + "and .gov")
             user.update_password(account_name)
             print(display_password(user, account_name))
         # ---------------------------------------------------------------------
