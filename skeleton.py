@@ -93,7 +93,7 @@ def main(): # Kevin
         elif user_choice == 5:
             
             while check == 0:
-                export_file = input("Please name the export file,"
+                export_file = input("Please name the export file, "
                                 + "including .txt at the end: ")
                 if ".txt" in export_file:
                     with open(export_file, 'w') as data:
