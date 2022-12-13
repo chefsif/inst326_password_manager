@@ -337,17 +337,6 @@ class Password:
         self.passcode = passcode
         self.age = age
     
-    def edit_password(self, new_password, age=1): # Wasif
-        """ Changes the value and age of a password.
-        
-        Args:
-            new_password (string): the new text of the password.
-            age (int): how long the new password has been in use. 
-                Defaults to 1 day.
-        """
-        self.passcode = new_password
-        self.age = age
-        
     def age_str(self): # Wasif
         """ Provides how long the password has been in use.
         
